@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>神结局 | by sekaiamber</title>
+    <meta name="author" content="sekaiamber(Xu Xiaomeng)" />
+    <script src="scripts/jquery-1.11.1.min.js"></script>
+    <script src="scripts/require.js"></script>
+    <script>
+        // Release
+        // var rconfig = {
+        //     paths: {
+        //         "main": "scripts/mainout"
+        //     }
+        // }
+        // Develop
+        var rconfig = {
+            baseUrl: 'data',
+        }
+        require.config(rconfig);
+        require(["main"]);
+    </script>
+    <link rel="stylesheet" href="styles/g.css">
+<!--
+    ==TODO==
+    <link rel="shortcut icon" href="favicon.png" />
+-->
+</head>
+<body>
+    <div id="top">
+        <div class="left">从前有座山，山上有个庙，庙里住着一个老和尚</div>
+        <div class="menu iconfont icon-caidan">
+            <div class="count">3</div>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+    <div id="main"></div>
+    <div id="console"></div>
+</body>
+</html>
