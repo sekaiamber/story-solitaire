@@ -1,14 +1,16 @@
 /******************
 * Global
 *******************/
-window,
-document,
 html,
 body
 {
     margin: 0px;
     padding: 0px;
 }
+/*html
+{
+    font-size: 32px;
+}*/
 body
 {
     background: rgb(233, 234, 238);
@@ -65,7 +67,7 @@ body
     white-space: nowrap;
     text-overflow: ellipsis;
     line-height: 150px;
-    font-size: 60px;
+    font-size: 1rem;
 }
 
 /******************
