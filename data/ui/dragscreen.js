@@ -48,8 +48,7 @@ define(function() {
                     // this.slider.style.left = -this.index*600 + endPos.x + 'px';
                     var y = $moveTarget.data('y') + endPos.y;
                     $moveTarget.data('y', y);
-                    // $moveTarget.css('transform', 'translateY(' + y + 'px)');
-                    $moveTarget.css('top', y + 'px');
+                    $moveTarget.css('transform', 'translateY(' + y + 'px)');
                 }
             },
             end:function(event){
