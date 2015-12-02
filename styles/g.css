@@ -92,7 +92,7 @@ body
 {
     /*transform: translateY(0px);*/
     position: absolute;
-    top: 0;
+    top: -300px;
 }
 .cs-passage
 {
