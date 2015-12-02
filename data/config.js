@@ -3,6 +3,7 @@ define({
     ui: {
         target: '#main',
         dragscreen: 'main',
-        moveTarget: '#content'
+        moveTarget: '#content',
+        dragFocus: 400,
     }
 });
