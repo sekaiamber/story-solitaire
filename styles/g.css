@@ -25,6 +25,7 @@ body
 #top
 {
     position: fixed;
+    z-index: 99;
 }
 #top .left,
 #top .menu
@@ -88,11 +89,17 @@ body
 }
 .content
 {
-    transform: rotateZ(0deg) rotateY(0deg) rotateX(0deg) translate3d(0px, -240px, 0px);
+    transform: rotateZ(0deg) rotateY(0deg) rotateX(0deg) translate3d(0px, 0px, 0px);
 }
 .cs-passage
 {
     font-size: 1rem;
+    border: rgb(96, 169, 214) solid 5px;
+    border-radius: 1rem;
+    padding: 1rem;
+    background: #fff;
+    margin: 0 0 1rem 0;
+    box-shadow: 0px 0px 15px #777;
 }
 
 /******************
