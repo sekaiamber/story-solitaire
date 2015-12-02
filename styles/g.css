@@ -89,7 +89,9 @@ body
 }
 #content
 {
-    transform: translateY(0px);
+    /*transform: translateY(0px);*/
+    position: absolute;
+    top: 0;
 }
 .cs-passage
 {
