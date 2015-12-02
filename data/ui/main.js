@@ -1,12 +1,20 @@
 /* global $ */
-define(function() {
+define([
+    './dragscreen'
+], function(dragscreen) {
     'use strict';
     var Cls_ui = function(config) {
-        this.init($(config.target));
+        this.config = config;
+        this.init();
     };
     Cls_ui.prototype = {
-        init: function($target) {
-            this.$target = $target;
+        init: function() {
+            this.$target = $(this.config.target);
+            var $moveTarget = $(this.config.moveTarget);
+            $moveTarget.data({
+                y: 0,
+            })
+            dragscreen(document.getElementById(this.config.dragscreen), $moveTarget);
         }
     }
     return Cls_ui;

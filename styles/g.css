@@ -87,9 +87,9 @@ body
     height: calc(100% - 151px - 2rem);
     overflow: hidden;
 }
-.content
+#content
 {
-    transform: rotateZ(0deg) rotateY(0deg) rotateX(0deg) translate3d(0px, 0px, 0px);
+    transform: translateY(0px);
 }
 .cs-passage
 {
