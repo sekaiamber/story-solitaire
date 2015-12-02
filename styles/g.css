@@ -86,6 +86,7 @@ body
     padding: calc(151px + 1rem) 1rem 1rem 1rem;
     height: calc(100% - 151px - 2rem);
     overflow: hidden;
+    position: relative;
 }
 #content
 {
