@@ -1,7 +1,7 @@
 /* global $ */
 define([
-    './dragscreen'
-], function(dragscreen) {
+    './contentInit'
+], function(contentInit) {
     'use strict';
     var Cls_ui = function(config) {
         this.config = config;
@@ -11,7 +11,7 @@ define([
         init: function() {
             this.$target = $(this.config.target);
             var $moveTarget = $(this.config.moveTarget);
-            dragscreen($moveTarget, this.config);
+            contentInit($moveTarget, this.config);
         }
     }
     return Cls_ui;
