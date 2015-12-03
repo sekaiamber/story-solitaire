@@ -11,14 +11,8 @@ define([
         init: function() {
             this.$target = $(this.config.target);
             var $moveTarget = $(this.config.moveTarget);
-            $moveTarget.data({
-                y: 0,
-                stack: []
-            });
-            $(".cs-passage", $moveTarget).each(function() {
-                
-            });
-            dragscreen(document.getElementById(this.config.dragscreen), $moveTarget);
+            var $dragscreen = $(this.config.dragscreen)
+            dragscreen($dragscreen, $moveTarget, this.config);
         }
     }
     return Cls_ui;
