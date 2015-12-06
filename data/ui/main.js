@@ -1,12 +1,17 @@
 /* global $ */
-define(function() {
+define([
+    './contentInit'
+], function(contentInit) {
     'use strict';
     var Cls_ui = function(config) {
-        this.init($(config.target));
+        this.config = config;
+        this.init();
     };
     Cls_ui.prototype = {
-        init: function($target) {
-            this.$target = $target;
+        init: function() {
+            this.$target = $(this.config.target);
+            var $moveTarget = $(this.config.moveTarget);
+            contentInit($moveTarget, this.config);
         }
     }
     return Cls_ui;
