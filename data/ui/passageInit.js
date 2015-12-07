@@ -4,7 +4,7 @@ define([
 ], function(helper) {
     'use strict';
     return function(index, text) {
-        index = index || '?';
+        index = index || '';
         text = text || '';
         var $passage = $(helper.domMaker('div', {
             class: ['cs-passage'],

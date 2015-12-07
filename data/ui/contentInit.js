@@ -12,6 +12,6 @@ define([
             $this.append('<div class="cs-passage-text">' + text + '</div>');
             $this.append('<div class="cs-passage-index">' + $this.attr('index') + '</div>');
         });
-        $moveTarget.append(optionSelector($moveTarget));
+        $moveTarget.append(optionSelector($moveTarget, config));
     }
 });

@@ -4,6 +4,7 @@ define({
         target: '#main',
         moveTarget: '#content',
         dragTop: 200,
-        dragBottom: 400
+        dragBottom: 400,
+        maxinputcount: 200,
     }
 });

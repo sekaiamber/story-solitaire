@@ -117,16 +117,94 @@ body
     text-align: center;
     line-height: 80px;
     border: rgb(96, 169, 214) solid 5px;
-    border-radius: 50px;
+    border-radius: 1.6rem;
     font-size: 1.6rem;
     color: rgb(96, 169, 214);
     box-shadow: 0px 0px 15px #777777;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
 }
-.cs-passage-text
+.cs-passage-index.is-visible
 {
-    outline: none;
-    min-height: 100px;
+    z-index: 5;
+    opacity: 1;
 }
+.cs-passage-index.is-hidden
+{
+    z-index: 1;
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    opacity: 0;
+}
+.cs-passage-text>div
+{
+    float: left;
+}
+.cs-passage-textarea
+{
+    padding-right: 5%;
+    width: 80%;
+}
+.cs-passage-text-ctl
+{
+    width: 15%;
+    text-align: center;
+}
+.cs-passage-text-ctl>div
+{
+    padding: 0.4rem 0;
+    background: rgb(96, 169, 214);
+    color: #fff;
+    border-radius: 0.8rem;
+}
+.cs-passage-text-ctl .return
+{
+    margin-top: 1rem;
+}
+.cs-passage-input
+{
+    min-height: 4rem;
+}
+.cs-passage-count
+{
+    text-align: right;
+    font-size: 1rem;
+}
+.cs-passage-option
+{
+    width: 50%;
+    float: left;
+    height: 100px;
+    line-height: 100px;
+    font-size: 1.2rem;
+    text-align: center;
+    color: rgb(96, 169, 214);
+    cursor: pointer;
+}
+.cs-passage-option .iconfont
+{
+    padding: 0 20px 0 0;
+    font-size: 2rem;
+}
+.cs-passage-select-ctl>div
+{
+    float: right;
+    padding: 0.4rem 1rem;
+    background: rgb(96, 169, 214);
+    color: #fff;
+    border-radius: 0.8rem;
+    text-align: center;
+    margin-right: 1rem;
+}
+.cs-passage-select-ctl .ok
+{
+    margin-right: 0;
+}
+
 
 /******************
 * iconfont
@@ -141,11 +219,12 @@ body
 }
 .iconfont {
     font-family:"iconfont" !important;
-    font-size:16px;
     font-style:normal;
     -webkit-font-smoothing: antialiased;
     -webkit-text-stroke-width: 0.2px;
     -moz-osx-font-smoothing: grayscale;
 }
 .icon-wenhao:before { content: "\e601"; }
+.icon-dianji:before { content: "\e602"; }
 .icon-caidan:before { content: "\e600"; }
+.icon-iconspeak:before { content: "\e603"; }
