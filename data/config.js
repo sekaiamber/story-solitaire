@@ -6,5 +6,9 @@ define({
         dragTop: 200,
         dragBottom: 400,
         maxinputcount: 200,
+        getNextPassagesSize: 4,
+    },
+    route: {
+        getNextPassages: '/api/getnextpassages/%id.json'
     }
 });

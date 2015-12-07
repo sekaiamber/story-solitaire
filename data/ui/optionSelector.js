@@ -1,16 +1,27 @@
 /* global $ */
 define([
     '../var/helper',
-    './passageInit'
-], function(helper, factory) {
+    '../config',
+    './passageInit',
+], function(helper, config, factory) {
     'use strict';
+    var getNextPassages = function(resource, callback, from, size) {
+        size = size || config.ui.getNextPassagesSize;
+        $.ajax({
+            url: config.route.getNextPassages.replace('%id', resource)
+        }).done(function(data) {
+            callback(data.data)
+        });
+    };
     return function($moveTarget, config, status, index, text) {
         status = status || 'menu';
+        index = index || '?';
         var $selector = factory(index, text);
         $selector.addClass('editor').addClass(status);
         // index
         var $menuindex = $(".cs-passage-index", $selector);
         $menuindex.addClass('menu').addClass('is-visible').addClass('iconfont').addClass('icon-wenhao');
+        $menuindex.empty();
         var $selectindex = $(helper.domMaker({
             name: 'div',
             class: ['cs-passage-index', 'select', 'is-hidden', 'iconfont', 'icon-dianji'],
@@ -50,24 +61,6 @@ define([
             }]
         }));
         $selector.append($menu);
-        $('.cs-passage-option.select', $menu).click(function(){
-            $('.cs-passage-index.is-visible').removeClass('is-visible').addClass('is-hidden');
-            $('.cs-passage-index.select').removeClass('is-hidden').addClass('is-visible');
-            $menu.fadeOut(300, function() {
-                $('.cs-passage-select', $selector).fadeIn(300);
-            });
-            $selector.removeClass('menu text');
-            $selector.addClass('select');
-        });
-        $('.cs-passage-option.text', $menu).click(function(){
-            $('.cs-passage-index.is-visible').removeClass('is-visible').addClass('is-hidden');
-            $('.cs-passage-index.text').removeClass('is-hidden').addClass('is-visible');
-            $menu.fadeOut(300, function() {
-                $('.cs-passage-text', $selector).fadeIn(300);
-            });
-            $selector.removeClass('menu select');
-            $selector.addClass('text');
-        });
         // text
         var $text = $(".cs-passage-text", $selector);
         var $input = $(helper.domMaker({
@@ -155,7 +148,31 @@ define([
             });
         });
         $selector.append($select);
+        var updatePassageList = function(data) {
+            console.log(data);
+        };
         // other
+        $('.cs-passage-option.select', $menu).click(function(){
+            $('.cs-passage-index.is-visible').removeClass('is-visible').addClass('is-hidden');
+            $('.cs-passage-index.select').removeClass('is-hidden').addClass('is-visible');
+            $menu.fadeOut(300, function() {
+                $select.fadeIn(300, function() {
+                    var id = $('.cs-passage[index!="?"]:last').attr('id');
+                    getNextPassages(id, updatePassageList, 0);
+                });
+            });
+            $selector.removeClass('menu text');
+            $selector.addClass('select');
+        });
+        $('.cs-passage-option.text', $menu).click(function(){
+            $('.cs-passage-index.is-visible').removeClass('is-visible').addClass('is-hidden');
+            $('.cs-passage-index.text').removeClass('is-hidden').addClass('is-visible');
+            $menu.fadeOut(300, function() {
+                $text.fadeIn(300);
+            });
+            $selector.removeClass('menu select');
+            $selector.addClass('text');
+        });
         $selector.append($('<div style="clear:both;"></div>'));
         switch (status) {
             case 'menu':
