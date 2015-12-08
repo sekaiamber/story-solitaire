@@ -87,6 +87,7 @@ body
     height: calc(100% - 151px);
     width: calc(100vw - 2rem);
     position: relative;
+    overflow-x: hidden;
 }
 #content
 {
@@ -203,6 +204,31 @@ body
 .cs-passage-select-ctl .ok
 {
     margin-right: 0;
+}
+.cs-passage-select-list
+{
+    padding: 0 0 1rem 0;
+}
+.cs-passage-select-loading
+{
+    text-align: center;
+}
+.cs-passage-select-list-content
+{
+    /*max-height: 30rem;*/
+    overflow: auto;
+}
+.cs-passage-select-list-item
+{
+    padding: 0.8rem;
+    margin-bottom: 0.4rem;
+    border: rgb(96, 169, 214) solid 3px;
+    border-radius: 1rem;
+}
+.cs-passage-select-list-item.is-active
+{
+    background: rgb(96, 169, 214);
+    color: #fff;
 }
 
 
