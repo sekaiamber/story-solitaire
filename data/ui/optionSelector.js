@@ -144,6 +144,10 @@ define([
                     name: 'div',
                     class: ['cs-passage-select-loading', 'animated', 'swing', 'infinite'],
                     html: '死命加载中...'
+                }, {
+                    name: 'div',
+                    class: ['cs-passage-select-msg', 'is-hidden'],
+                    html: ''
                 }]
             }, {
                 name: 'div',
@@ -180,7 +184,8 @@ define([
         });
         $selector.append($select);
         var $selectlist = $('.cs-passage-select-list-content', $select);
-        var $loading = $('.cs-passage-select-loading', $select); 
+        var $loading = $('.cs-passage-select-loading', $select);
+        var $msg = $('.cs-passage-select-msg', $select);
         var updatePassageList = function(data) {
             if (!data) return;
             for (var idx = 0; idx < data.length; idx++) {
@@ -199,8 +204,11 @@ define([
             }
             if (data.length > 0) {
                 $selector.data('selectEmpty', true);
+            } else {
+                $msg.html('没有后续啦，自己扯一个吧！');
+                $msg.removeClass('is-hidden');
             }
-            $loading.css('display', 'none');
+            $loading.addClass('is-hidden');
         };
         // other
         $selector.data('empty', function() {
@@ -209,14 +217,18 @@ define([
             $selector.data('selectEmpty', false);
             $selector.data('currentId', $('.cs-passage[index!="?"]:last').attr('id'));
             $selector.data('currentIndex', parseInt($('.cs-passage[index!="?"]:last').attr('index')));
+            $msg.addClass('is-hidden');
         });
         $('.cs-passage-option.select', $menu).click(function(){
             $('.cs-passage-index.is-visible', $selector).removeClass('is-visible').addClass('is-hidden');
             $('.cs-passage-index.select', $selector).removeClass('is-hidden').addClass('is-visible');
             $menu.fadeOut(300, function() {
+                if (!$selector.data('selectEmpty')) {
+                    $loading.removeClass('is-hidden');
+                }
+                $msg.addClass('is-hidden');
                 $select.fadeIn(300, function() {
                     if (!$selector.data('selectEmpty')) {
-                        $loading.css('display', '');
                         getNextPassages($selector.data('currentId'), updatePassageList, 0);
                     }
                 });

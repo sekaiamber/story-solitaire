@@ -5,19 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <title>神结局 | by sekaiamber</title>
     <meta name="author" content="sekaiamber(Xu Xiaomeng)" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
     <script src="scripts/jquery-1.11.1.min.js"></script>
     <script src="scripts/require.js"></script>
     <script>
         // Release
-        // var rconfig = {
-        //     paths: {
-        //         "main": "scripts/mainout"
-        //     }0
-        // }
-        // Develop
         var rconfig = {
-            baseUrl: 'data',
+            paths: {
+                "main": "scripts/mainout"
+            }
         }
+        // Develop
+        // var rconfig = {
+        //     baseUrl: 'data',
+        // }
         require.config(rconfig);
         require(["main"]);
     </script>
@@ -30,11 +31,8 @@
 </head>
 <body>
     <div id="top">
-        <div class="left">从前有座山，山上有个庙，庙里住着一个老和尚</div>
-        <div class="menu iconfont icon-caidan">
-            <!--<div class="count">13</div>-->
-        </div>
-        <div style="clear: both;"></div>
+        <div class="top-bg"><img src="/images/top.jpg"></div>
+        <div class="top-title"><span>从前有座山，山上有个庙，庙里住着一个老和尚</span></div>
     </div>
     <div id="main">
         <div id="content">

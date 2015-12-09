@@ -4,7 +4,7 @@ define([
 ], function(optionSelector) {
     'use strict';
     return function($moveTarget, config) {
-        $moveTarget.css('margin', config.dragTop + 'px 0 ' + config.dragBottom + 'px 0');
+        $moveTarget.css('margin', config.dragTop + ' 0 ' + config.dragBottom + ' 0');
         $(".cs-passage", $moveTarget).each(function() {
             var $this = $(this);
             var text = $this.html();
