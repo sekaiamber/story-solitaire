@@ -1,6 +1,6 @@
 define({
     fxNull: function() {},
-    _dom: '<%em class="%cls" %attr>%html</%em>',
+    _dom: '<%em id="%id" class="%cls" %attr>%html</%em>',
     domMaker: function(elem, obj) {
         if (typeof elem == 'object') {
             obj = elem;
@@ -9,10 +9,15 @@ define({
             return '<' + elem + '></' + elem + '>';
         }
         var ret = this._dom;
+        if (obj['id']) {
+            ret = ret.replace('%id', obj['id']);
+        } else {
+            ret = ret.replace('id="%id"', '');
+        }
         if (obj['class']) {
             ret = ret.replace('%cls', obj['class'].join(' '));
         } else {
-            ret = ret.require('class="%cls"', '');
+            ret = ret.replace('class="%cls"', '');
         }
         if (obj['attr']) {
             var attr = '';

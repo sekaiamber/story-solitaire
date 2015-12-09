@@ -3,20 +3,23 @@ define([
     '../var/helper'
 ], function(helper) {
     'use strict';
-    return function(index, text) {
-        index = index || '?';
+    return function(index, text, id) {
+        index = index || '';
         text = text || '';
-        var $passage = $(helper.domMaker('div', {
+        var $passage = $(helper.domMaker({
+            name: 'div',
             class: ['cs-passage'],
-            attr: { index: index }
-        }));
-        $passage.append(helper.domMaker('div', {
-            class: ['cs-passage-text'],
-            html: text
-        }));
-        $passage.append(helper.domMaker('div', {
-            class: ['cs-passage-index'],
-            html: index
+            attr: { index: index },
+            id: id,
+            children: [{
+                name: 'div',
+                class: ['cs-passage-text'],
+                html: text
+            }, {
+                name: 'div',
+                class: ['cs-passage-index'],
+                html: index
+            }]
         }));
         return $passage;
     }
