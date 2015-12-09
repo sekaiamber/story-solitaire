@@ -11,6 +11,6 @@ define({
         bgImageSpeed: 0.5,
     },
     route: {
-        getNextPassages: './api/getnextpassages/%id.json'
+        getNextPassages: 'api/getnextpassages/%id.json'
     },
 });
