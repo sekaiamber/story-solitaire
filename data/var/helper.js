@@ -1,3 +1,4 @@
+/* global jQuery */
 define({
     fxNull: function() {},
     _dom: '<%em id="%id" class="%cls" %attr>%html</%em>',
@@ -44,5 +45,53 @@ define({
         }
         ret = ret.replace(/%em/g, elem);
         return ret;
-    }
+    },
+    changeCurrentUrl: (function($) {
+        // Sekai's Cheats!! jQuery non DOM binding!!
+        var currentLocation = window.location.href;
+        var currentHash = window.location.hash;
+        var prevLocation = window.location.href;
+        var prevHash = window.location.hash;
+        var intIntervalTime = 300;
+        var check = function() {
+            if (currentLocation != window.location.href) {
+                prevLocation = currentLocation;
+                prevHash = currentHash;
+                currentLocation = window.location.href;
+                currentHash = window.location.hash;
+                
+                $(window.location).trigger('change', {
+                    currentLocation: currentLocation,
+                    currentHash: currentHash,
+                    prevLocation: prevLocation,
+                    prevHash: prevHash
+                });
+            }
+        }
+        setInterval(check, intIntervalTime);
+        return function (id, para) {
+            if (typeof id == 'object' && !para) {
+                para = id;
+                id = undefined;
+            }
+            var url = "";
+            if (id) {
+                url += '#' + id;
+            };
+            if (para) {
+                if (typeof para == 'string') {
+                    url += '?' + para;
+                } else {
+                    var paraarr = [];
+                    for (var key in para) {
+                        if (para.hasOwnProperty(key)) {
+                            paraarr.push(key + '=' + encodeURI(para[key]));
+                        }
+                    }
+                    url += '?' + paraarr.join('&');
+                }
+            }
+            window.location.hash = url;
+            return url;
+        }})(jQuery)
 });
