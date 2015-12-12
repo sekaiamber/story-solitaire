@@ -50,6 +50,9 @@ define([
                 for (var idx = currentIdx; idx > targetIdx; idx--) {
                     $('.cs-passage[index="' + idx + '"]').remove();
                 }
+                $selector.data('gotoMenu')(function() {
+                    $selector.data('empty')();
+                });
             }
         });
         // index
@@ -131,11 +134,7 @@ define([
             }]
         }));
         $('.return', $textcontrol).click(function() {
-            $('.cs-passage-index.is-visible', $selector).removeClass('is-visible').addClass('is-hidden');
-            $('.cs-passage-index.menu', $selector).removeClass('is-hidden').addClass('is-visible');
-            $text.fadeOut(300, function() {
-                $($menu, $selector).fadeIn(300);
-            });
+            $selector.data('gotoMenu')();
         });
         $('.ok', $textcontrol).click(function() {
             // TODO
@@ -186,11 +185,7 @@ define([
         }));
         var $selectcontrol = $('.cs-passage-select-ctl', $select);
         $('.return', $selectcontrol).click(function() {
-            $('.cs-passage-index.is-visible', $selector).removeClass('is-visible').addClass('is-hidden');
-            $('.cs-passage-index.menu', $selector).removeClass('is-hidden').addClass('is-visible');
-            $select.fadeOut(300, function() {
-                $($menu, $selector).fadeIn(300);
-            });
+            $selector.data('gotoMenu')();
         });
         $('.ok', $selectcontrol).click(function() {
             var $active = $('.cs-passage-select-list-item.is-active', $selectlist);
@@ -235,6 +230,26 @@ define([
             $selector.data('currentId', $('.cs-passage[index!="?"]:last').attr('id'));
             $selector.data('currentIndex', parseInt($('.cs-passage[index!="?"]:last').attr('index')));
             $msg.addClass('is-hidden');
+        });
+        $selector.data('gotoMenu', function(callback) {
+            callback = callback || helper.fxNull;
+            if ($selector.hasClass('menu')) {
+                callback();
+                return;
+            }
+            $('.cs-passage-index.is-visible', $selector).removeClass('is-visible').addClass('is-hidden');
+            $('.cs-passage-index.menu', $selector).removeClass('is-hidden').addClass('is-visible');
+            if ($selector.hasClass('text')) {
+                $text.fadeOut(300, function() {
+                    $($menu, $selector).fadeIn(300, callback);
+                });
+            } else if ($selector.hasClass('select')) {
+                $select.fadeOut(300, function() {
+                    $($menu, $selector).fadeIn(300, callback);
+                });
+            }
+            $selector.removeClass('text select');
+            $selector.addClass('menu');
         });
         $('.cs-passage-option.select', $menu).click(function(){
             $('.cs-passage-index.is-visible', $selector).removeClass('is-visible').addClass('is-hidden');
