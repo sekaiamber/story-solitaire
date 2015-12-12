@@ -31,10 +31,27 @@ define([
                 var $new = factory($selector.data('currentIndex') + 1, content, id);
                 $new.addClass('animated bounceIn');
                 $selector.before($new);
+                helper.changeCurrentUrl(id);
                 $selector.data('empty')();
             }
         }
         $selector.data(domdata);
+        $(window.location).on('change', function(e, data) {
+            var current = null;
+            // zero
+            if (data.currentHash == "") {
+                current = $('.cs-passage[index="0"]');
+            } else {
+                current = $(data.currentHash);
+            }
+            if (current.length) {
+                var targetIdx = parseInt(current.attr('index'));
+                var currentIdx = parseInt($('.cs-passage[index!="?"]:last').attr('index'));
+                for (var idx = currentIdx; idx > targetIdx; idx--) {
+                    $('.cs-passage[index="' + idx + '"]').remove();
+                }
+            }
+        });
         // index
         var $menuindex = $(".cs-passage-index", $selector);
         $menuindex.addClass('menu').addClass('is-visible').addClass('iconfont').addClass('icon-wenhao');
