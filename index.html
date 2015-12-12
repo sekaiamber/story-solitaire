@@ -10,15 +10,15 @@
     <script src="scripts/require.js"></script>
     <script>
         // Release
-        // var rconfig = {
-        //     paths: {
-        //         "main": "scripts/mainout"
-        //     }
-        // }
-        // Develop
         var rconfig = {
-            baseUrl: 'data',
+            paths: {
+                "main": "scripts/mainout"
+            }
         }
+        // Develop
+        // var rconfig = {
+        //     baseUrl: 'data',
+        // }
         require.config(rconfig);
         require(["main"]);
     </script>
